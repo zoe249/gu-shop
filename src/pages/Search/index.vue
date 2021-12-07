@@ -75,9 +75,10 @@
               <li class="yui3-u-1-5" v-for="good in goodsList" :key="good.id">
                 <div class="list-wrap">
                   <div class="p-img">
-                    <a href="item.html" target="_blank"
-                      ><img :src="good.defaultImg"
-                    /></a>
+                    <!-- 路由跳转的时候携带Id -->
+                    <router-link :to="`/detail/${good.id}`">
+                      <img :src="good.defaultImg"/>
+                    </router-link>  
                   </div>
                   <div class="price">
                     <strong>
@@ -113,7 +114,12 @@
             </ul>
           </div>
           <!-- 分页器 -->
-          <Pagination />
+          <Pagination 
+          :pageNo="searchParmas.pageNo" 
+          :pageSize="searchParmas.pageSize" 
+          :total="total" 
+          :continues="5"
+          @getPageNo="getPageNo"/>
         </div>
       </div>
     </div>
@@ -122,7 +128,7 @@
 
 <script>
 import SearchSelector from "./SearchSelector/SearchSelector";
-import { mapGetters } from "vuex";
+import { mapGetters,mapState } from "vuex";
 export default {
   name: "Search",
 
@@ -131,6 +137,7 @@ export default {
   },
   data() {
     return {
+      num:5,
       searchParmas: {
         // 一级分类Id
         category1Id: "",
@@ -147,7 +154,7 @@ export default {
         // 分页器，第几页
         pageNo: 1,
         // 每一页展示的数据
-        pageSize: 10,
+        pageSize: 1,
         // 平台售卖属性带的参数
         props: [],
         // 品牌
@@ -180,6 +187,10 @@ export default {
     isDesc() {
       return this.searchParmas.order.indexOf("desc") != -1;
     },
+    // 获取search模块展示产品一共多少数据
+    ...mapState({
+      total:state=>state.search.searchList.total
+    })
   },
   methods: {
     // 向服务器发送search模块数据（根据参数不同返回不同的数据进行展示）
@@ -258,6 +269,12 @@ export default {
       this.searchParmas.order = newOrder;
       this.getData();
     },
+    // 自定义事件的回调函数--获取当前第几页
+    getPageNo(pageNo){
+      this.searchParmas.pageNo = pageNo;
+      // console.log(this.searchParmas.pageNo);
+      this.getData()
+    }
   },
   watch: {
     // 监听路由信息是否发生变化，如果发生变化，再次发送请求
