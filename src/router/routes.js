@@ -5,7 +5,8 @@ import Search from '@/pages/Search'
 import Login from '@/pages/Login'
 import Register from '@/pages/Register'
 import Detail from '@/pages/Detail'
-
+import AddCartSuccess from '@/pages/AddCartSuccess'
+import ShopCart from '@/pages/ShopCart'
 export default [{
         path: '/home',
         component: Home,
@@ -45,5 +46,17 @@ export default [{
         path: '/detail/:skuId',
         component: Detail,
         meta: { siShow: true }
+    },
+    {
+        path: '/addcartSuccess',
+        name: 'addcartSuccess',
+        component: AddCartSuccess,
+        meta: { isShow: true }
+    },
+    {
+        path: '/shopcart',
+        name: 'shopCart',
+        component: ShopCart,
+        meta: { isSHwo: true }
     }
 ]

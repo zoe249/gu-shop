@@ -1,6 +1,10 @@
-import { reqGoodsInfo } from '@/api'
+import { reqGoodsInfo, reqAddOrUpdateShopCart } from '@/api';
+// 封装游客临时身份，生成一个随机字符串
+import { getUUID } from '@/utils/uuid_token'
 const state = {
     goodInfo: {},
+    // 游客临时身份
+    uuId_token: getUUID(),
 };
 const mutations = {
     GETGOODINFO(state, goodInfo) {
@@ -13,6 +17,21 @@ const actions = {
         let result = await reqGoodsInfo(skuId);
         if (result.code == 200) {
             commit('GETGOODINFO', result.data)
+        }
+    },
+    // 将产品添加到和购物车
+    async addOrUpdateShopCart({ commit }, { skuId, skuNum }) {
+        // 加入购物车以后，将参数带给服务器
+        // 服务器写入数据成功，并没有返回其他的数据 只返回code = 200
+        // 所以不需要存储数据
+        let result = await reqAddOrUpdateShopCart(skuId, skuNum);
+        // 当前函数如果执行返回Promise
+        if (result.code == 200) {
+            // 加入购物车成功的回调
+            return 'ok'
+        } else {
+            // 加入购物车失败的回调
+            return Promise.reject(new Error('faile'))
         }
     }
 };

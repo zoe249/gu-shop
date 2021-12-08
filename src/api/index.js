@@ -33,3 +33,15 @@ export const reqGetSearchInfo = (params) => requests({ url: '/list', method: 'po
 
 // 获取产品详情信息的接口  /api/item/{ skuId }  请求方式 get
 export const reqGoodsInfo = (skuId) => requests({ url: `/item/${skuId}`, method: 'get' })
+
+// 将产品调价到购物车中（获取更新某一个产品的个数）
+export const reqAddOrUpdateShopCart = (skuId, skuNum) => requests({ url: `/cart/addToCart/${skuId}/${skuNum}`, method: 'post' })
+
+// 获取购物车列表接口 /api/cart/cartList
+export const reqCarList = () => requests({ url: '/cart/cartList', method: 'get' })
+
+// 删除购物车产品的接口 /api/cart/deleteCart/{skuId}  delete
+export const reqDeleteCartById = (skuId) => requests({ url: `/cart/deleteCart/${skuId}`, method: 'delete' })
+
+// 切换商品选中状态 /api/cart/checkCart/{skuID}/{isChecked} get
+export const reqUpdateCheckedBuId = (skuId, isChecked) => requests({ url: `/cart/checkCart/${skuId}/${isChecked}`, method: 'get' })
