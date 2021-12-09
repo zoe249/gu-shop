@@ -7,6 +7,8 @@ import Register from '@/pages/Register'
 import Detail from '@/pages/Detail'
 import AddCartSuccess from '@/pages/AddCartSuccess'
 import ShopCart from '@/pages/ShopCart'
+import Traed from '@/pages/Trade'
+import Pay from '@/pages/Pay'
 export default [{
         path: '/home',
         component: Home,
@@ -58,5 +60,15 @@ export default [{
         name: 'shopCart',
         component: ShopCart,
         meta: { isSHwo: true }
+    },
+    {
+        path: '/traed',
+        component: Traed,
+        meta: { isShow: true }
+    },
+    {
+        path: '/pay',
+        component: Pay,
+        meta: { isShow: true }
     }
 ]

@@ -4,10 +4,16 @@ import App from './App.vue';
 import TypeNav from '@/components/TypeNav';
 import Carousel from '@/components/Carousel';
 import Pagination from '@/components/Pagination'
+
+// 引入elementUI 
+import { MessageBox } from 'element-ui';
 // 第一个参数：全局组件的名字，第二个参数：哪一个组件
 Vue.component('TypeNav', TypeNav);
 Vue.component('Carousel', Carousel); //  轮播图
 Vue.component('Pagination', Pagination); // 分页器
+// 注册组件
+// Vue.use(MessageBox);
+Vue.prototype.$alert = MessageBox.alert;
 // Vue.config.productionTip = false;
 // 引入路由
 import router from '@/router';
@@ -17,12 +23,15 @@ import store from '@/store';
 import '@/mock/mockServe';
 // 引入swiper样式
 import "swiper/css/swiper.css";
+// 统一接受api文件夹里面的全部请求函数
+import * as API from '@/api'
 new Vue({
     render: h => h(App),
     // 注册路由：底下的写法kv一致省略v【router小写】
     // 全局事件总线的配置
     beforeCreate() {
         Vue.prototype.$bus = this;
+        Vue.prototype.$API = API;
     },
     // 当这里书写route
     router,

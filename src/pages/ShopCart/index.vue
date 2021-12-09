@@ -86,7 +86,8 @@
           <i class="summoney">{{ totalPrice }}</i>
         </div>
         <div class="sumbtn">
-          <a class="sum-btn" href="###" target="_blank">结算</a>
+          <!-- <a class="sum-btn"  target="_blank" @click="$router.push('/traed')">结算</a> -->
+          <router-link to="traed">结算</router-link>
         </div>
       </div>
     </div>
