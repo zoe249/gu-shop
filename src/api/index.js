@@ -72,3 +72,9 @@ export const reqSubmitOrder = (tradeNo, data) => requests({ url: `/order/auth/su
 
 // 获取支付信息 /api/payment/weixin/createNative/{orderId}
 export const reqPayInfo = (orderId) => requests({ url: `/payment/weixin/createNative/${orderId}`, method: 'get' })
+
+// 获取支付订单状态 /api/payment/weixin/queryPayStatus/{orderId}
+export const reqPayStatus = (orderId) => requests({ url: `/payment/weixin/queryPayStatus/${orderId}`, method: 'get' })
+
+// 获取我的清单列表/api/order/auth/{page}/{limit}
+export const reqMyOrderList = (page, limit) => requests({ url: `/order/auth/${page}/${limit}`, method: 'get' })

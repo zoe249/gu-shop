@@ -70,7 +70,7 @@ const actions = {
     async userLogout({ commit }) {
         // 发起请求，通知服务器清除token
         let result = await reqLogout()
-        console.log(result);
+            // console.log(result);
         if (result.code == 200) {
             commit('CLEAR');
             return 'ok';

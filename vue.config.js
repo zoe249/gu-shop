@@ -8,5 +8,6 @@ module.exports = {
                 target: 'http://39.98.123.211'
             },
         },
-    }
+    },
+    productionSourceMap: false
 }

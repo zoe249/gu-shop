@@ -159,6 +159,7 @@ export default {
       // 需要携带参数
       let result = await this.$API.reqSubmitOrder(tradeNo,data);
       if(result.code = 200){
+        // console.log(this);
         this.orderId = result.data
         this.$router.push(`/pay?orderId=${this.orderId}`)
       }else{

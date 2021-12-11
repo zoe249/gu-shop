@@ -25,6 +25,22 @@ import '@/mock/mockServe';
 import "swiper/css/swiper.css";
 // 统一接受api文件夹里面的全部请求函数
 import * as API from '@/api'
+// 引入懒加载插件
+import VueLazyload from 'vue-lazyload'
+import atm from '@/assets/jerry.gif'
+// 注册
+Vue.use(VueLazyload, {
+    // 懒加载默认图
+    loading: atm
+})
+
+// 引入自定义插件
+import myPlugins from '@/plugins/myPlugins';
+Vue.use(myPlugins);
+
+// 引入表单校验插件
+import '@/plugins/validate'
+
 new Vue({
     render: h => h(App),
     // 注册路由：底下的写法kv一致省略v【router小写】
