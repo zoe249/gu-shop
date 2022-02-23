@@ -68,6 +68,7 @@
             end = totalPage;
             start = totalPage - continues+1;
           };
+          // console.log(end);
           return {start,end}
         }
       }
